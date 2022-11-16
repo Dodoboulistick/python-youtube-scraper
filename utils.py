@@ -1,11 +1,31 @@
 import json
 from Video import Video
 
+# import threading
+# import asyncio
+
+### MULTITHREADING ATTEMPT ###
+# def create_video(url: str, l:list, loop) -> Video:
+#     asyncio.set_event_loop(loop)
+#     return Video(url)
+
+
+# def fetch_videos(videos: list) -> list:
+#     basepath = "https://www.youtube.com/watch?v="
+#     urls = list(map(lambda x: (basepath + x), videos))
+#     l = []
+#     loop = asyncio.new_event_loop()
+#     threads = [threading.Thread(target=create_video, args=(url,l,loop,)) for url in urls]
+#     for thread in threads:
+#         thread.start()
+#     for thread in threads:
+#         thread.join()
+#     return list(filter(lambda x: x.exists, l))
 
 def fetch_videos(videos: list) -> list:
     basepath = "https://www.youtube.com/watch?v="
     all_videos = list(map(lambda x: Video(basepath + x), videos))
-    return filter(lambda x: x.exists, all_videos)
+    return list(filter(lambda x: x.exists, all_videos))
 
 def get_videos(input_file: str) -> list:
     with open(input_file, 'r') as f:

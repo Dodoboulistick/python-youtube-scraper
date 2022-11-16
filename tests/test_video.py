@@ -1,7 +1,7 @@
 from Video import Video
 
 video = Video("https://www.youtube.com/watch?v=4whD6uAryMs") #Valid video
-mock_video = Video("https://www.youtube.com/watch?v=4whD6uAryMs") #Invalid video -> Wrong ID
+mock_video = Video("https://www.youtube.com/watch?v=wsefw") #Invalid video -> Wrong ID
 
 def test_real_video_info() -> None:
     assert video.title == "Daft Punk - Digital Love (Official Audio)"
