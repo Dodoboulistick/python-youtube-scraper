@@ -30,16 +30,12 @@ class Video:
     def get_video_info(self, soup: BeautifulSoup) -> tuple:
         try:
             title = soup.findAll('div')[0].find("meta", {"itemprop": "name"}).get("content")
-            print(title)
             author = soup.findAll('div')[0].find("link", {"itemprop": "name"}).get("content")
-            print(author)
-            description_raw = soup.find(id="description-inline-expander").find("yt-formatted-string").contents
+            description_raw = soup.find(id="description-inline-expander").find("yt-formatted-string").text
             description = os.linesep.join([s for s in description_raw.splitlines() if s])
-            print(description)
             likes_raw = str(soup.select_one('button.yt-spec-button-shape-next--icon-leading > '
             '.yt-spec-button-shape-next--button-text-content > span.yt-core-attributed-string').contents[0])
             likes = re.sub(r'\xa0',"", likes_raw)
-            print(likes)
             exists = True
         except:
             title = ""
